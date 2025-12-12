@@ -48,4 +48,16 @@ class Controller:
 
     """Implementare la parte di ricerca del cammino minimo"""
     # TODO
+    def handle_cammino_minimo(self, e):
+        self._model.search_minimum_path()
+        risultati_fin = self._model.soluzione
+        print()
+
+        self._view.lst_risultati_cammino_minimo.controls.clear()
+        self._view.lst_risultati_cammino_minimo.controls.append(ft.Text(f"Risultati minimo:"))
+        self._view.lst_risultati_cammino_minimo.controls.append(ft.Text(f"{self._model._map_rifugi[risultati_fin[0]].id} : {self._model._map_rifugi[risultati_fin[0]].nome} ---> {self._model._map_rifugi[risultati_fin[1]].id} : {self._model._map_rifugi[risultati_fin[1]].nome}  || peso = {self._model.G_filtrato.get_edge_data(risultati_fin[0],risultati_fin[1])['weight']}"))
+        self._view.lst_risultati_cammino_minimo.controls.append(ft.Text(f"{self._model._map_rifugi[risultati_fin[1]].id} : {self._model._map_rifugi[risultati_fin[1]].nome} ---> {self._model._map_rifugi[risultati_fin[2]].id} : {self._model._map_rifugi[risultati_fin[2]].nome}  || peso = {self._model.G_filtrato.get_edge_data(risultati_fin[1],risultati_fin[2])['weight']}"))
+        self._view.page.update()
+
+
 
